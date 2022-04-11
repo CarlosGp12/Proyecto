@@ -1,103 +1,14 @@
 import React from "react";
-import { Formulario, ContenedorBotonCentrado, Boton, LeyendaError, Selector, DivContenedor, Input, Encabezado, Enlace, Navegador, Label } from "./../elementos/formularios";
+import { Formulario, ContenedorBotonCentrado, Boton, DivContenedor, Encabezado, Enlace, MensajeError,Navegador } from "./../elementos/formularios";
 import './../estilos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faI } from '@fortawesome/free-solid-svg-icons';
 // import Input from "./../componentes/Input";
 import { esNombre, esPrecio, esStock, esMarca } from "./Validaciones";
+import InputText from "./../componentes/Input";
+import InputSelect from "./InputSelect";
 
 
-class InputSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.actualizarState = this.actualizarState.bind(this);
-    this.state = { activo: "" };
-  }
-  actualizarState(e) {
-    const { name, value } = e.target;
-    this.setState({ value });
-    this.props.actualizarState({
-      name, value, error: value === "" ? true : false
-    })
-  }
-  render() {
-    return (
-      <div>
-        <Label htmlFor={"id-"+this.props.name}>{this.props.label}</Label>
-        <Selector
-          id={"id-"+this.props.name}
-          name={this.props.name}
-          onChange={this.actualizarState}
-        >
-          {
-            this.props.opciones.map((opcion, index)=>(
-            <option key={index} value={opcion.value}>{opcion.texto}</option>  
-            ))
-          }
-        </Selector>
-      </div>
-    )
-  }
-}
-
-class InputText extends React.Component {
-  constructor(props) {
-    super(props);
-    this.actualizarState = this.actualizarState.bind(this);
-    this.state = {
-      value: "",
-      error: false,
-      mensajeError: ""
-    };
-  }
-
-  actualizarState(e) {
-    const { name, value } = e.target;
-    console.log(this.props.validacion(value));
-
-    if (this.props.validacion(value)) {
-      this.setState({
-        value,
-        error: false,
-        mensajeError: ""
-      });
-      this.props.actualizarState({
-        name, value, error: false
-      });
-    } else {
-      this.setState({
-        value,
-        error: true,
-        mensajeError: this.props.mensajeError
-      });
-      this.props.actualizarState({
-        name, value, error: true
-      });
-    }
-  }
-
-
-  render() {
-
-    return (
-      <div>
-        <Label htmlFor={"id-" + this.props.name}>{this.props.label}</Label>
-        <Input
-          id={"id-" + this.props.name}
-          type="text"
-          name={this.props.name}
-          placeholder={this.props.placeholder}
-          onChange={this.actualizarState}
-        />
-        {
-          this.state.error ? (
-            <LeyendaError>{this.state.mensajeError}</LeyendaError>
-          ) : ("")
-        }
-      </div>
-    )
-  }
-}
 
 class FormularioProductos extends React.Component {
   constructor(props) {
@@ -127,10 +38,6 @@ class FormularioProductos extends React.Component {
       }
     }
   }
-
-
-
-
   actualizarState(input) {
     this.setState({
       ...this.state,
@@ -141,11 +48,9 @@ class FormularioProductos extends React.Component {
     }, () => { console.log(this.state); });
 
   }
-
   submit(e) {
 
   }
-
   render() {
     return (
       <main>
@@ -202,6 +107,16 @@ class FormularioProductos extends React.Component {
               mensajeError="El campo no puede quedar vacio"
               actualizarState={this.actualizarState}
             />
+            {
+            this.state.nombre.error
+            || this.state.precio.error || this.state.opciones.error || this.state.stock.error || this.state.marca.error ? (
+              <MensajeError>
+                <p>
+                  <b>Error:</b> Por favor rellene el formulario correctamente
+                </p>
+              </MensajeError>
+            ) : ("")
+            }
             <ContenedorBotonCentrado>
               <Boton type="submit" disabled={this.state.nombre.error
                 || this.state.precio.error || this.state.opciones.error || this.state.stock.error || this.state.marca.error}>

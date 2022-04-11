@@ -1,70 +1,13 @@
 import React from "react";
-import { Formulario, ContenedorBotonCentrado, Boton, LeyendaError, Selector, DivContenedor, Input, Encabezado, Enlace, Navegador, Label } from "./../elementos/formularios";
+import { Formulario, ContenedorBotonCentrado, Boton, MensajeError, DivContenedor, Encabezado, Enlace, Navegador } from "./../elementos/formularios";
 import './../estilos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faI } from '@fortawesome/free-solid-svg-icons';
 // import Input from "./../componentes/Input";
-import { esNombre, esPrecio, esStock, esMarca, esCedula, esDireccion, esTelefono } from "./Validaciones";
+import { esNombre, esCedula, esDireccion, esTelefono } from "./Validaciones";
 
+import InputText from "./../componentes/Input";
 
-class InputText extends React.Component {
-  constructor(props) {
-    super(props);
-    this.actualizarState = this.actualizarState.bind(this);
-    this.state = {
-      value: "",
-      error: false,
-      mensajeError: ""
-    };
-  }
-
-  actualizarState(e) {
-    const { name, value } = e.target;
-    console.log(this.props.validacion(value));
-
-    if (this.props.validacion(value)) {
-      this.setState({
-        value,
-        error: false,
-        mensajeError: ""
-      });
-      this.props.actualizarState({
-        name, value, error: false
-      });
-    } else {
-      this.setState({
-        value,
-        error: true,
-        mensajeError: this.props.mensajeError
-      });
-      this.props.actualizarState({
-        name, value, error: true
-      });
-    }
-  }
-
-
-  render() {
-
-    return (
-      <div>
-        <Label htmlFor={"id-" + this.props.name}>{this.props.label}</Label>
-        <Input
-          id={"id-" + this.props.name}
-          type="text"
-          name={this.props.name}
-          placeholder={this.props.placeholder}
-          onChange={this.actualizarState}
-        />
-        {
-          this.state.error ? (
-            <LeyendaError>{this.state.mensajeError}</LeyendaError>
-          ) : ("")
-        }
-      </div>
-    )
-  }
-}
 
 class FormularioClientes extends React.Component {
   constructor(props) {
@@ -113,7 +56,7 @@ class FormularioClientes extends React.Component {
     return (
       <main>
         <Encabezado>
-          <h1 className="titulo">AGREGAR PRODUCTO</h1>
+          <h1 className="titulo">AGREGAR ClIENTE</h1>
         </Encabezado>
         <Navegador>
           <Enlace href="#"><FontAwesomeIcon icon={faI} /> Inicio</Enlace>
@@ -162,9 +105,20 @@ class FormularioClientes extends React.Component {
               mensajeError="El campo no puede quedar vacio"
               actualizarState={this.actualizarState}
             />
+            {
+            this.state.nombre.error
+            || this.state.cedula.error || this.state.direccion.error || this.state.telefono.error ? (
+              <MensajeError>
+                <p>
+                  <b>Error:</b> Por favor rellene el formulario correctamente
+                </p>
+              </MensajeError>
+            ) : ("")
+            }
+
             <ContenedorBotonCentrado>
               <Boton type="submit" disabled={this.state.nombre.error
-                || this.state.cedula.error || this.state.direccion.error || this.state.telefono.error }>
+                || this.state.cedula.error || this.state.direccion.error || this.state.telefono.error}>
                 Enviar
               </Boton>
             </ContenedorBotonCentrado>
