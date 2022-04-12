@@ -1,0 +1,38 @@
+const data ={
+    status: "success",
+    items: [{
+        id: 1,
+        Nombre: "Computadora Lenovo Ideapad",
+        Tipo:"Laptop",
+        Precio: 350, 
+        Imagen: require('./Imagenes/lenovo-ideapad.png'),
+        img1: "https://www.lenovo.com/medias/lenovo-laptop-legion-ideapad-3-gaming-hero.png?context=bWFzdGVyfHJvb3R8Njc3MzN8aW1hZ2UvcG5nfGhlZS9oNWYvMTA4NTEwODU3MTM0MzgucG5nfGM3MzZhMWRhMWMxMDFiOTUwOWE4ZjVmNjY3Nzk0ZWIxMWZkYzhhOGRiMzE5MjUyOWY3NGE0OTNkYWE0YjE1MjQ",
+        img2: "",
+        Cantidad: 1,
+        marca: "Lenovo",
+    },
+    {
+        id: 2,
+        Nombre: "Redmi 10S",
+        Tipo:"SmarthPhone",
+        Precio: 350,
+        Imagen: require('./Imagenes/redmi-note-10s.jpg'),
+        img1: "https://www.lenovo.com/medias/lenovo-laptop-legion-ideapad-3-gaming-hero.png?context=bWFzdGVyfHJvb3R8Njc3MzN8aW1hZ2UvcG5nfGhlZS9oNWYvMTA4NTEwODU3MTM0MzgucG5nfGM3MzZhMWRhMWMxMDFiOTUwOWE4ZjVmNjY3Nzk0ZWIxMWZkYzhhOGRiMzE5MjUyOWY3NGE0OTNkYWE0YjE1MjQ",
+        img2: "",
+        Cantidad: 1,
+        marca: "Xiaomi",
+    },
+    {
+        id: 3,
+        Nombre: "Camara hibrida Alpha 7",
+        Tipo: "Camara",
+        Precio: 750,
+        Imagen: require('./Imagenes/Sony-Digital.png'),
+        img1: "",
+        img2: "",
+        Cantidad: 1,
+        marca: "Sony",
+    },
+    ],
+};
+export default data;

@@ -12,7 +12,7 @@ const datos = [
     { cod_cliente: 6, Nombre: "Scooby", Apellido: "doo", Cedula: "0928885546", Direccion: "Warne's Brother", Telefono: "0933266149" }
 ];
 
-class ClienteTable extends React.Component {
+export class ClienteTable extends React.Component {
     state = {
         datos: datos,
         form:{
@@ -95,4 +95,4 @@ class ClienteTable extends React.Component {
 
 }
 
-export default ClienteTable;
+export default  ClienteTable;
