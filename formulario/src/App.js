@@ -6,10 +6,8 @@ import ClienteTable from "./componentes/ClienteTable";
 const App = () => {
     return (
     <main>
-      <FormularioClientes/>
-      
-      <hr/>
-      
+      {/* <FormularioProductos></FormularioProductos>
+      <FormularioClientes></FormularioClientes> */}
       <ClienteTable/>
     </main>
   );
