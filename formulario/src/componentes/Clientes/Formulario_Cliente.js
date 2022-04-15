@@ -1,12 +1,11 @@
 import React from "react";
-import { Formulario, ContenedorBotonCentrado, Boton, MensajeError, DivContenedor, Encabezado, Enlace, Navegador } from "./../elementos/formularios";
-import './../estilos.css';
+import { Formulario, ContenedorBotonCentrado, Boton, MensajeError, DivContenedor, Encabezado, Enlace, Navegador } from "../../elementos/formularios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faI } from '@fortawesome/free-solid-svg-icons';
 // import Input from "./../componentes/Input";
-import { esNombre, esCedula, esDireccion, esTelefono } from "./Validaciones";
+import { esNombre, esCedula, esDireccion, esTelefono } from "../Validaciones";
 
-import InputText from "./../componentes/Input";
+import InputText from "../Input";
 
 
 class FormularioClientes extends React.Component {

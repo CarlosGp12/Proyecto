@@ -32,6 +32,9 @@ export const Header =()=>{
                 <li>
                     <Link to={"/clientes"}>CLIENTES</Link>
                 </li>   
+                <li>
+                    <Link to={"/clientes/Formulario_Cliente"}>Formulario</Link>
+                </li>   
             </ul>
             <div className="cart" onClick={toogleMenu}>
                 <box-icon name= "cart"></box-icon>

@@ -15,9 +15,12 @@ class ClienteTable extends React.Component {
     }
 
     componentDidMount() {
+
         axios.get("http://localhost:8081/clientes")
+            
             .then(response => response.data)
             .then((data => {
+                console.log(data)
                 this.setState({ cliente: data });
             }
             ));
