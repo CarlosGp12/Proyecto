@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ClienteModel {
 
     @Id
-    private Integer cod_cliente;
+    private Long cod_cliente;
     @Column(unique = false, length = 13)
     private String cedula;
     private String nombres;
@@ -15,13 +15,14 @@ public class ClienteModel {
     private String telefono;
     private String direccion;
 
-    public Integer getCod_cliente() {
+    public Long getCod_cliente() {
         return cod_cliente;
     }
 
-    public void setCod_cliente(Integer cod_cliente) {
+    public void setCod_cliente(Long cod_cliente) {
         this.cod_cliente = cod_cliente;
     }
+
 
     public String getCedula() {
         return cedula;
