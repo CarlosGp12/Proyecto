@@ -1,6 +1,7 @@
 package com.Aplicacion.App.Controller;
 
 import com.Aplicacion.App.Model.ClienteModel;
+import com.Aplicacion.App.Repository.ClienteRepository;
 import com.Aplicacion.App.Services.ClienteService;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 public class ClienteController {
 
     @Autowired
@@ -33,12 +34,12 @@ public class ClienteController {
         return clienteservice.insertar(cliente);
     }
 
-    @PutMapping(path = "{cod_cliente}")
-    public Optional<ClienteModel> actualizar(@PathVariable("cod_cliente") Long cod_cliente) {
-        return this.clienteservice.actualizar(cod_cliente);
+    @PutMapping("/{cod_cliente}")
+    public ClienteModel actualizar(@RequestBody ClienteModel cliente) {
+        return clienteservice.actualizar(cliente);
     }
 
-    @DeleteMapping(path = "{cod_cliente}")
+    @DeleteMapping("/{cod_cliente}")
     public String eliminar(@PathVariable("cod_cliente") Long cod_cliente) {
         boolean ok = this.clienteservice.eliminar(cod_cliente);
         if (ok) {

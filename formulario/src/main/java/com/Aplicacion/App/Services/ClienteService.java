@@ -4,6 +4,8 @@ import com.Aplicacion.App.Model.ClienteModel;
 import com.Aplicacion.App.Repository.ClienteRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class ClienteService {
     private ClienteRepository clienterepository;
 
     public List<ClienteModel> listar() {
-        return clienterepository.findAll();
+        return (List<ClienteModel>) clienterepository.findAll();
     }
 
     public ClienteModel insertar(ClienteModel cliente) {
@@ -23,9 +25,15 @@ public class ClienteService {
 
     }
 
-    public Optional<ClienteModel> actualizar(Long cod_cliente) {
+    public ClienteModel actualizar(ClienteModel cliente) {
 
-        return clienterepository.findById(cod_cliente);
+        ClienteModel existingCliente = clienterepository.findById(cliente.getCod_cliente()).orElse(null);
+        existingCliente.setCedula(cliente.getCedula());
+        existingCliente.setNombres(cliente.getNombres());
+        existingCliente.setApellidos(cliente.getApellidos());
+        existingCliente.setTelefono(cliente.getTelefono());
+        existingCliente.setDireccion(cliente.getDireccion());
+        return clienterepository.save(existingCliente);
     }
 
     public boolean eliminar(Long cod_cliente) {
