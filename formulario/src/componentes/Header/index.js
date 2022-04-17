@@ -11,8 +11,6 @@ export const Header =()=>{
         setMenu(!menu);
     }
 
-    
-
     return(
         <header> 
 
@@ -24,16 +22,13 @@ export const Header =()=>{
 
             <ul>
                 <li>
-                    <Link to={"/productos"}>INICIO</Link>
+                    <Link to={"/"}>INICIO</Link>
                 </li>
                 <li>
-                    <Link to={"/"}>PRODUCTOS</Link>
+                    <Link to={"/productos"}>PRODUCTOS</Link>
                 </li>
                 <li>
                     <Link to={"/clientes"}>CLIENTES</Link>
-                </li>   
-                <li>
-                    <Link to={"/clientes/Formulario_Cliente"}>Formulario</Link>
                 </li>   
             </ul>
             <div className="cart" onClick={toogleMenu}>
