@@ -15,20 +15,30 @@ public class CarritoService {
     public CarritoModel insertar(CarritoModel carrito) {
 
         return carritorepository.save(carrito);
-
-    }
-
-    public CarritoModel actualizar(CarritoModel carrito) {
-
-        return carritorepository.save(carrito);
     }
 
     public List<CarritoModel> listar() {
         return carritorepository.findAll();
     }
 
-    public void eliminar(CarritoModel carrito) {
-        carritorepository.delete(carrito);
+    public CarritoModel actualizar(CarritoModel carrito) {
+
+        CarritoModel existingCarrito = carritorepository.findById(carrito.getCod_carrito()).orElse(null);
+        existingCarrito.setId_tipo_prod(carrito.getId_tipo_prod());
+        existingCarrito.setNombre(carrito.getNombre());
+        existingCarrito.setProducto(carrito.getProducto());
+        existingCarrito.setPrecio(carrito.getPrecio());
+        return carritorepository.save(existingCarrito);
+    }
+
+    public boolean eliminar(Long cod_carrito) {
+        try {
+            carritorepository.deleteById(cod_carrito);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }

@@ -1,10 +1,8 @@
 package com.Aplicacion.App.Controller;
 
 import com.Aplicacion.App.Model.ClienteModel;
-import com.Aplicacion.App.Repository.ClienteRepository;
 import com.Aplicacion.App.Services.ClienteService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -10,17 +10,17 @@ import javax.persistence.Table;
 public class CarritoModel {
 
     @Id
-    private Integer cod_carrito;
+    private Long cod_carrito;
     private Integer id_tipo_prod;
     private String nombre;
     private String producto;
     private Integer precio;
 
-    public Integer getCod_carrito() {
+    public Long getCod_carrito() {
         return cod_carrito;
     }
 
-    public void setCod_carrito(Integer cod_carrito) {
+    public void setCod_carrito(Long cod_carrito) {
         this.cod_carrito = cod_carrito;
     }
 

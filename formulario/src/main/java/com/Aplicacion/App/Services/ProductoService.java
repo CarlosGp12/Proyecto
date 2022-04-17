@@ -18,17 +18,29 @@ public class ProductoService {
 
     }
 
-    public ProductoModel actualizar(ProductoModel prod) {
-
-        return productorepository.save(prod);
-    }
-
     public List<ProductoModel> listar() {
         return productorepository.findAll();
     }
 
-    public void eliminar(ProductoModel prod) {
-        productorepository.delete(prod);
+    public ProductoModel actualizar(ProductoModel prod) {
+
+        ProductoModel existingProducto = productorepository.findById(prod.getCod_producto()).orElse(null);
+        existingProducto.setNombre(prod.getNombre());
+        existingProducto.setPrecio(prod.getPrecio());
+        existingProducto.setStock(prod.getStock());
+        existingProducto.setCategoria(prod.getCategoria());
+        existingProducto.setMarca(prod.getMarca());
+        return productorepository.save(existingProducto);
+    }
+
+    public boolean eliminar(Long cod_producto) {
+        try {
+            productorepository.deleteById(cod_producto);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }
