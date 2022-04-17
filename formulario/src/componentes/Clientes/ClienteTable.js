@@ -4,8 +4,6 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
-const url = "http://localhost:8080/clientes";
-
 class ClienteTable extends React.Component {
     state = {
         cliente: [],
@@ -94,7 +92,10 @@ class ClienteTable extends React.Component {
 
         return (
             <>
-                <h1 className="titulo">EDITAR ClIENTE</h1>
+                <br />
+                <br />
+                <br />
+                <br />
                 <div className="container">
                     <table className="table caption-top">
                         <caption>Clientes {"  "}
@@ -120,8 +121,8 @@ class ClienteTable extends React.Component {
                                             <td>{cliente.cedula}</td>
                                             <td>{cliente.nombres}</td>
                                             <td>{cliente.apellidos}</td>
-                                            <td>{cliente.telefono}</td>
                                             <td>{cliente.direccion}</td>
+                                            <td>{cliente.telefono}</td>
                                             <td>
                                                 <button type="button" className="btn btn-warning" onClick={() => { this.seleccionarCliente(cliente); this.modalInsertar() }}><FontAwesomeIcon icon={faPenToSquare} /> </button>
                                                 {" "}
@@ -139,6 +140,7 @@ class ClienteTable extends React.Component {
                         </ModalHeader>
                         <ModalBody>
                             <div className="form-group">
+                                <form id="formulario">
                                 <input
                                     label="ID"
                                     name="cod_cliente"
@@ -146,17 +148,15 @@ class ClienteTable extends React.Component {
                                     value={form ? form.cod_cliente : ""}
                                     onChange={this.handleChange}
                                 />
-                                <br />
                                 <input
                                     label="Nombre"
                                     name="nombres"
+                                    id="nombres"
                                     placeholder="nombre"
                                     value={form ? form.nombres : ""}
                                     onChange={this.handleChange}
-                                    mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
-                                // actualizarState={this.actualizarState}
                                 />
-                                <br />
+                                <span id="error" class="help-block"></span>
                                 <input
                                     label="Apellido"
                                     name="apellidos"
@@ -166,7 +166,6 @@ class ClienteTable extends React.Component {
                                     mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
                                 // actualizarState={this.actualizarState}
                                 />
-                                <br />
                                 <input
                                     label="Cedula"
                                     name="cedula"
@@ -176,7 +175,6 @@ class ClienteTable extends React.Component {
                                     mensajeError="El campo no puede quedar vacio y debe ingresar 10 numeros"
                                 //  actualizarState={this.actualizarState}
                                 />
-                                <br />
                                 <input
                                     label="Direccion"
                                     name="direccion"
@@ -186,7 +184,6 @@ class ClienteTable extends React.Component {
                                     mensajeError="El campo no puede quedar vacio"
                                 //actualizarState={this.actualizarState}
                                 />
-                                <br />
                                 <input
                                     label="Telefono"
                                     name="telefono"
@@ -196,12 +193,13 @@ class ClienteTable extends React.Component {
                                     mensajeError="El campo no puede quedar vacio"
                                 // actualizarState={this.actualizarState}
                                 />
+                                </form>
                             </div>
                         </ModalBody>
 
                         <ModalFooter>
                             {this.state.tipoModal == 'insertar' ?
-                                <button className="btn btn-success" onClick={() => this.peticionPost()}>
+                                <button className="btn btn-success" type="submit" onClick={() => this.peticionPost()}>
                                     Insertar
                                 </button> : <button className="btn btn-primary" onClick={() => this.peticionPut()}>
                                     Actualizar
@@ -223,7 +221,9 @@ class ClienteTable extends React.Component {
                 </div>
             </>
         );
+        
     }
+    
 }
 
 export default ClienteTable;
