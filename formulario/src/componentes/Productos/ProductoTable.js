@@ -3,6 +3,7 @@ import axios from "axios";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import InputText from "../Input";
 
 
 class ProductoTable extends React.Component {
@@ -141,58 +142,77 @@ class ProductoTable extends React.Component {
                         </ModalHeader>
                         <ModalBody>
                             <div className="form-group">
-                                <input
-                                    label="ID"
-                                    name="cod_producto"
-                                    placeholder="ID"
-                                    value={form ? form.cod_producto : ""}
-                                    onChange={this.handleChange}
-                                />
-                                <input
-                                    label="Nombre"
-                                    name="nombre"
-                                    placeholder="nombre"
-                                    value={form ? form.nombre : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
-                                // actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Precio"
-                                    name="precio"
-                                    placeholder="13.00"
-                                    value={form ? form.precio : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
-                                // actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Categoria"
-                                    name="categoria"
-                                    placeholder="categoria"
-                                    value={form ? form.categoria : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
-                                // actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Stock"
-                                    name="stock"
-                                    placeholder="cantidad"
-                                    value={form ? form.stock : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede quedar vacio y debe ingresar 10 numeros"
-                                //  actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Marca"
-                                    name="marca"
-                                    placeholder="marca"
-                                    value={form ? form.marca : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede quedar vacio"
-                                //actualizarState={this.actualizarState}
-                                />
+                                <div>
+
+                                    <InputText
+                                        label="ID"
+                                        name="cod_producto"
+                                        placeholder="ID"
+                                        value={form ? form.cod_producto : ""}
+                                        onChange={this.handleChange}
+                                    />
+
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="Nombre"
+                                        name="nombre"
+                                        placeholder="nombre"
+                                        value={form ? form.nombre : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
+                                    // actualizarState={this.actualizarState}
+                                    />
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="Precio"
+                                        name="precio"
+                                        placeholder="13.00"
+                                        value={form ? form.precio : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
+                                    // actualizarState={this.actualizarState}
+                                    />
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="Categoria"
+                                        name="categoria"
+                                        placeholder="categoria"
+                                        value={form ? form.categoria : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
+                                    // actualizarState={this.actualizarState}
+                                    />
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="Stock"
+                                        name="stock"
+                                        placeholder="cantidad"
+                                        value={form ? form.stock : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede quedar vacio y debe ingresar 10 numeros"
+                                    //  actualizarState={this.actualizarState}
+                                    />
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="Marca"
+                                        name="marca"
+                                        placeholder="marca"
+                                        value={form ? form.marca : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede quedar vacio"
+                                    //actualizarState={this.actualizarState}
+                                    />
+                                </div>
                             </div>
                         </ModalBody>
 
