@@ -3,6 +3,7 @@ import axios from "axios";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import InputText from "../Input";
 
 class ClienteTable extends React.Component {
     state = {
@@ -141,58 +142,76 @@ class ClienteTable extends React.Component {
                         <ModalBody>
                             <div className="form-group">
                                 <form id="formulario">
-                                <input
-                                    label="ID"
-                                    name="cod_cliente"
-                                    placeholder="ID"
-                                    value={form ? form.cod_cliente : ""}
-                                    onChange={this.handleChange}
-                                />
-                                <input
-                                    label="Nombre"
-                                    name="nombres"
-                                    id="nombres"
-                                    placeholder="nombre"
-                                    value={form ? form.nombres : ""}
-                                    onChange={this.handleChange}
-                                />
-                                <span id="error" class="help-block"></span>
-                                <input
-                                    label="Apellido"
-                                    name="apellidos"
-                                    placeholder="apellido"
-                                    value={form ? form.apellidos : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
-                                // actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Cedula"
-                                    name="cedula"
-                                    placeholder="0923377972"
-                                    value={form ? form.cedula : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede quedar vacio y debe ingresar 10 numeros"
-                                //  actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Direccion"
-                                    name="direccion"
-                                    placeholder="Direccion del cliente"
-                                    value={form ? form.direccion : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede quedar vacio"
-                                //actualizarState={this.actualizarState}
-                                />
-                                <input
-                                    label="Telefono"
-                                    name="telefono"
-                                    placeholder="Telefono del cliente"
-                                    value={form ? form.telefono : ""}
-                                    onChange={this.handleChange}
-                                    mensajeError="El campo no puede quedar vacio"
-                                // actualizarState={this.actualizarState}
-                                />
+                                    <div>
+                                        {/* <label>Id</label> */}
+                                        <InputText
+                                            label="ID"
+                                            name="cod_cliente"
+                                            placeholder="ID"
+                                            value={form ? form.cod_cliente : ""}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <div>
+                                        {/* <label>Nombres</label> */}
+                                        <InputText
+                                            label="Nombre"
+                                            name="nombres"
+                                            id="nombres"
+                                            placeholder="nombre"
+                                            value={form ? form.nombres : ""}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <div>
+                                        {/* <label>Apellido</label> */}
+                                        <span id="error" class="help-block"></span>
+                                        <InputText
+                                            label="Apellido"
+                                            name="apellidos"
+                                            placeholder="apellido"
+                                            value={form ? form.apellidos : ""}
+                                            onChange={this.handleChange}
+                                            mensajeError="El campo no puede estar vacio, el texto no debe contener caracteres especiales como: !@#$%^*(){}"
+                                        // actualizarState={this.actualizarState}
+                                        />
+                                    </div>
+                                    <div>
+                                        {/* <label>Cedula</label> */}
+                                        <InputText
+                                            label="Cedula"
+                                            name="cedula"
+                                            placeholder="0923377972"
+                                            value={form ? form.cedula : ""}
+                                            onChange={this.handleChange}
+                                            mensajeError="El campo no puede quedar vacio y debe ingresar 10 numeros"
+                                        //  actualizarState={this.actualizarState}
+                                        />
+                                    </div>
+                                    <div>
+                                        {/* <label>Direccion</label> */}
+                                        <InputText
+                                            label="Direccion"
+                                            name="direccion"
+                                            placeholder="Direccion del cliente"
+                                            value={form ? form.direccion : ""}
+                                            onChange={this.handleChange}
+                                            mensajeError="El campo no puede quedar vacio"
+                                        //actualizarState={this.actualizarState}
+                                        />
+                                    </div>
+                                    <div>
+                                        {/* <label>Telefono</label>  */}
+                                        <InputText
+                                            label="Telefono"
+                                            name="telefono"
+                                            placeholder="Telefono del cliente"
+                                            value={form ? form.telefono : ""}
+                                            onChange={this.handleChange}
+                                            mensajeError="El campo no puede quedar vacio"
+                                        // actualizarState={this.actualizarState}
+                                        />
+                                    </div>
                                 </form>
                             </div>
                         </ModalBody>
@@ -221,9 +240,9 @@ class ClienteTable extends React.Component {
                 </div>
             </>
         );
-        
+
     }
-    
+
 }
 
 export default ClienteTable;
