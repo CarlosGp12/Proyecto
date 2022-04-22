@@ -3,26 +3,24 @@ import axios from "axios";
 // import { DataContext } from "../../contexto/DataProvider";
 
 class ProductoItem extends React.Component {
-    
 
-        state = {
-            producto: [],
-            form: {
-                cod_producto: '',
-                id_tipo_prod: '',
-                nombre: '',
-                precio: '',
-                stock: '',
-                categoria: '',
-                marca: '',
-                imagen: '',
-                tipoModal: ''
-            }
+
+    state = {
+        producto: [],
+        form: {
+            cod_producto: '',
+            id_tipo_prod: '',
+            nombre: '',
+            precio: '',
+            stock: '',
+            categoria: '',
+            marca: '',
+            imagen: '',
+            tipoModal: ''
         }
-        // const value = useContext(DataContext);
-        // const AddCarrito = value.AddCarrito;
-    
-
+    }
+    // const value = useContext(DataContext);
+    // const AddCarrito = value.AddCarrito;
 
     peticionGet = () => {
         axios.get("http://localhost:8080/productos").then(response => {
@@ -36,11 +34,7 @@ class ProductoItem extends React.Component {
         this.peticionGet();
     }
 
-
-
     render() {
-
-
 
         return (
             <>
@@ -49,7 +43,6 @@ class ProductoItem extends React.Component {
                 <br />
                 <br />
                 <div className="productos ">
-
 
                     {this.state.producto.map(producto => (
 
