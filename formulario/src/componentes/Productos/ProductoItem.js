@@ -59,7 +59,7 @@ class ProductoItem extends React.Component {
                             </div>
                             <div className="producto_Datos">
                                 <h1>{producto.nombre}</h1>
-                                <p>{producto.categoria}</p>
+                                <p>ID Categoria: {producto.categoria}</p>
                                 <p className="price">${producto.precio}</p>
                                 <p>Cantidad: {producto.stock}</p>
                             </div>
