@@ -25,7 +25,7 @@ class ProductoItem extends React.Component {
 
 
     peticionGet = () => {
-        axios.get("http://localhost:8081/productos").then(response => {
+        axios.get("http://localhost:8080/productos").then(response => {
             this.setState({ producto: response.data });
         }).catch(error => {
             console.log(error.message);
