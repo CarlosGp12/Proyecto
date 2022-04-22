@@ -12,7 +12,16 @@ public class ProductoModel {
     private Double precio;
     private Integer stock;
     private String categoria;
+    private String imagen;
     private String marca;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public String getCategoria() {
         return categoria;
