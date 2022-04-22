@@ -1,34 +1,66 @@
-import React, {useContext} from "react";
-import { DataContext } from "../../contexto/DataProvider"; 
-import { ProductoItem } from "./ProductoItem";
+import React, { useContext } from "react";
+import { DataContext } from "../../contexto/DataProvider";
+import  ProductoItem  from "./ProductoItem";
+import axios from "axios";
 
-export const List_producto =()=>{
 
-    const value = useContext(DataContext)
-    const [productos] = value.productos
-    
-    console.log(productos)
-    
-    return(
+class List_producto extends React.Component {
+
+    state = {
+        producto: [],
+        form: {
+            cod_producto: '',
+            id_tipo_prod: '',
+            nombre: '',
+            precio: '',
+            stock: '',
+            categoria: '',
+            marca: '',
+            tipoModal: ''
+        }
+    }
+
+    peticionGet = () => {
+        axios.get("http://localhost:8081/productos").then(response => {
+            this.setState({ producto: response.data });
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
+
+    componentDidMount() {
+        this.peticionGet();
+    }
+
+
+
+render() {
+
+
+
+    return (
+        
         <>
             <h1 className="title">PRODUCTOS</h1>
-
+            
             <div className="productos">
                 {
-                    productos.map(producto => (
-                        <ProductoItem 
-                        key={producto.id} 
-                        id={producto.id}
-                        Tipo={producto.Tipo}
-                        Nombre={producto.Nombre}
-                        Precio={producto.Precio}
-                        Imagen={producto.Imagen}
-                        Cantidad={producto.Cantidad}
-                        Marca={producto.Marca}
+                    this.state.producto.map(producto => (
+                        <ProductoItem
+                            key={producto.cod_producto}
+                            id={producto.cod_producto}
+                            Tipo={producto.nombre}
+                            Nombre={producto.precio}
+                            Precio={producto.categoria}
+                            Imagen={producto.Imagen}
+                            Cantidad={producto.stock}
+                            Marca={producto.marca}
                         />
                     ))
                 }
             </div>
         </>
     );
-};
+}
+        }
+export default List_producto;
