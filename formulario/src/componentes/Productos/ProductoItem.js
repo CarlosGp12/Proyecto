@@ -1,35 +1,82 @@
-import React, {useContext} from "react";
-import { DataContext } from "../../contexto/DataProvider";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import axios from "axios";
+// import { DataContext } from "../../contexto/DataProvider";
 
-
-export const ProductoItem = ({id,Tipo,Nombre,Precio,Imagen,Cantidad,Marca}) =>{
+class ProductoItem extends React.Component {
     
-    const value = useContext(DataContext);
-    const AddCarrito = value.AddCarrito;
 
-    return(
-            <div  className="producto">
-                
-                    <div className="producto_Img">
-                        <img src={Imagen} alt={Nombre} />
-                    </div>
-                <div className="producto_Datos">
-                    <h1>{Nombre}</h1>
-                    <p>{Tipo}</p>
-                    <p className="price">${Precio}</p>
-                    <p>Cantidad: {Cantidad}</p>
+        state = {
+            producto: [],
+            form: {
+                cod_producto: '',
+                id_tipo_prod: '',
+                nombre: '',
+                precio: '',
+                stock: '',
+                categoria: '',
+                marca: '',
+                imagen: '',
+                tipoModal: ''
+            }
+        }
+        // const value = useContext(DataContext);
+        // const AddCarrito = value.AddCarrito;
+    
+
+
+    peticionGet = () => {
+        axios.get("http://localhost:8081/productos").then(response => {
+            this.setState({ producto: response.data });
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
+
+    componentDidMount() {
+        this.peticionGet();
+    }
+
+
+
+    render() {
+
+
+
+        return (
+            <>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="productos ">
+
+
+                    {this.state.producto.map(producto => (
+
+                        <div className="producto">
+                            <div className="producto_Img">
+                                <img src={producto.imagen} alt="{nombre}" />
+                            </div>
+                            <div className="producto_Datos">
+                                <h1>{producto.nombre}</h1>
+                                <p>{producto.categoria}</p>
+                                <p className="price">${producto.precio}</p>
+                                <p>Cantidad: {producto.stock}</p>
+                            </div>
+                            <div className="button">
+                                <button className="btn">
+                                    Añadir al carro
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                    }
+
+
                 </div>
-                <div className="button">
-                    <button onClick={() => AddCarrito(id)} className="btn" >
-                        Añadir al carro
-                    </button>
-                </div>
-                
-                <div className="buttonV">
-                
-                    
-                </div>
-            </div>
-    );
-};
+            </>
+        );
+    }
+}
+
+export default ProductoItem;
