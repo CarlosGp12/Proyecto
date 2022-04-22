@@ -26,7 +26,7 @@ class ProductoTable extends React.Component {
     }
 
     peticionGet = () => {
-        axios.get("http://localhost:8081/productos").then(response => {
+        axios.get("http://localhost:8080/productos").then(response => {
             this.setState({ producto: response.data });
         }).catch(error => {
             console.log(error.message);
@@ -34,7 +34,7 @@ class ProductoTable extends React.Component {
     }
 
     peticionPost = async () => {
-        await axios.post("http://localhost:8081/productos", this.state.form).then(response => {
+        await axios.post("http://localhost:8080/productos", this.state.form).then(response => {
             this.modalInsertar();
             this.peticionGet();
         }).catch(error => {
@@ -43,14 +43,14 @@ class ProductoTable extends React.Component {
     }
 
     peticionPut = () => {
-        axios.put("http://localhost:8081/productos/" + this.state.form.cod_producto, this.state.form).then(response => {
+        axios.put("http://localhost:8080/productos/" + this.state.form.cod_producto, this.state.form).then(response => {
             this.modalInsertar();
             this.peticionGet();
         })
     }
 
     peticionDelete = () => {
-        axios.delete("http://localhost:8081/productos/" + this.state.form.cod_producto).then(response => {
+        axios.delete("http://localhost:8080/productos/" + this.state.form.cod_producto).then(response => {
             this.setState({ modalEliminar: false });
             this.peticionGet();
         }).catch(error => {
