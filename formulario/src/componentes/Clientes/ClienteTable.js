@@ -2,30 +2,54 @@ import React from "react";
 import axios from "axios";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrashCan, faPenToSquare,faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import InputText from "../Input";
 
 class ClienteTable extends React.Component {
-    state = {
-        cliente: [],
-        modalInsertar: false,
-        modalEliminar: false,
-        form: {
-            cod_cliente: '',
-            cedula: '',
-            nombres: '',
-            apellidos: '',
-            telefono: '',
-            direccion: '',
-            tipoModal: ''
+    constructor(props){
+        super(props)
+        this.state = {
+            cliente: [],
+            modalInsertar: false,
+            modalEliminar: false,
+            form: {
+                cod_cliente: '',
+                cedula: '',
+                nombres: '',
+                apellidos: '',
+                telefono: '',
+                direccion: '',
+                tipoModal: ''
+            }
+            
+            
         }
+        this.exportPdf = this.exportPdf.bind(this);
+        this.cols = [
+            { field: 'cod_cliente', header: 'ID' },
+            { field: 'cedula', header: 'Cedula' },
+            { field: 'nombres', header: 'Nombre' },
+            { field: 'apellidos', header: 'Apellido' },
+            { field: 'direccion', header: 'Direccion' },
+            { field: 'telefono', header: 'Telefono' },
+        ];
+        this.exportColumns = this.cols.map(col => ({ title: col.header, dataKey: col.field }));
     }
-
     peticionGet = () => {
         axios.get("http://localhost:8080/clientes").then(response => {
             this.setState({ cliente: response.data });
         }).catch(error => {
             console.log(error.message);
+        })
+    }
+
+    exportPdf() {
+        import('jspdf').then(jsPDF => {
+            import('jspdf-autotable').then(() => {
+                const doc = new jsPDF.default(0, 0);
+                doc.autoTable(this.exportColumns, this.state.cliente);
+                doc.save('Clientes.pdf');
+            })
         })
     }
 
@@ -100,7 +124,8 @@ class ClienteTable extends React.Component {
                 <div className="container">
                     <table className="table caption-top">
                         <caption>Clientes {"  "}
-                            <button type="button" className="btn btn-success" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><FontAwesomeIcon icon={faPlus} /></button>
+                            <button type="button" className="btn btn-success" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><FontAwesomeIcon icon={faPlus} /></button>{"   "}
+                            <button type="button" className="btn btn-success" onClick={this.exportPdf} ><FontAwesomeIcon icon={faFilePdf} /> </button>
                         </caption>
                         <thead>
                             <tr>
