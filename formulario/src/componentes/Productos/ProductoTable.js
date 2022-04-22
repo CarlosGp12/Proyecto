@@ -20,12 +20,13 @@ class ProductoTable extends React.Component {
             stock: '',
             categoria: '',
             marca: '',
+            imagen: '',
             tipoModal: ''
         }
     }
 
     peticionGet = () => {
-        axios.get("http://localhost:8080/productos").then(response => {
+        axios.get("http://localhost:8081/productos").then(response => {
             this.setState({ producto: response.data });
         }).catch(error => {
             console.log(error.message);
@@ -33,7 +34,7 @@ class ProductoTable extends React.Component {
     }
 
     peticionPost = async () => {
-        await axios.post("http://localhost:8080/productos", this.state.form).then(response => {
+        await axios.post("http://localhost:8081/productos", this.state.form).then(response => {
             this.modalInsertar();
             this.peticionGet();
         }).catch(error => {
@@ -42,14 +43,14 @@ class ProductoTable extends React.Component {
     }
 
     peticionPut = () => {
-        axios.put("http://localhost:8080/productos/" + this.state.form.cod_producto, this.state.form).then(response => {
+        axios.put("http://localhost:8081/productos/" + this.state.form.cod_producto, this.state.form).then(response => {
             this.modalInsertar();
             this.peticionGet();
         })
     }
 
     peticionDelete = () => {
-        axios.delete("http://localhost:8080/productos/" + this.state.form.cod_producto).then(response => {
+        axios.delete("http://localhost:8081/productos/" + this.state.form.cod_producto).then(response => {
             this.setState({ modalEliminar: false });
             this.peticionGet();
         }).catch(error => {
@@ -69,7 +70,6 @@ class ProductoTable extends React.Component {
                 [e.target.name]: e.target.value
             }
         });
-        console.log(this.state.form);
     }
 
     seleccionarProducto = (producto) => {
@@ -82,6 +82,7 @@ class ProductoTable extends React.Component {
                 stock: producto.stock,
                 categoria: producto.categoria,
                 marca: producto.marca,
+                imagen: producto.imagen
             }
         })
     }
@@ -113,6 +114,7 @@ class ProductoTable extends React.Component {
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Stock</th>
                                 <th scope="col">Marca</th>
+                                <th scope="col">Imagen</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -126,6 +128,7 @@ class ProductoTable extends React.Component {
                                         <td>{producto.categoria}</td>
                                         <td>{producto.stock}</td>
                                         <td>{producto.marca}</td>
+                                        <td className="tdimagen">{producto.imagen}</td>
                                         <td>
                                             <button type="button" className="btn btn-warning" onClick={() => { this.seleccionarProducto(producto); this.modalInsertar() }}><FontAwesomeIcon icon={faPenToSquare} /></button>
                                             {" "}
@@ -208,6 +211,18 @@ class ProductoTable extends React.Component {
                                         name="marca"
                                         placeholder="marca"
                                         value={form ? form.marca : ""}
+                                        onChange={this.handleChange}
+                                        mensajeError="El campo no puede quedar vacio"
+                                    //actualizarState={this.actualizarState}
+                                    />
+                                </div>
+                                <div>
+
+                                    <InputText
+                                        label="URL de la imagen"
+                                        name="imagen"
+                                        placeholder="imagen"
+                                        value={form ? form.imagen : ""}
                                         onChange={this.handleChange}
                                         mensajeError="El campo no puede quedar vacio"
                                     //actualizarState={this.actualizarState}
