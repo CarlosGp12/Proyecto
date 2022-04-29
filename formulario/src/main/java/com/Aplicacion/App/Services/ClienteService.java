@@ -5,7 +5,7 @@ import com.Aplicacion.App.Repository.ClienteRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +28,16 @@ public class ClienteService {
     public ClienteModel actualizar(ClienteModel cliente) {
 
         ClienteModel existingCliente = clienterepository.findById(cliente.getCod_cliente()).orElse(null);
+        existingCliente.setTipoId(cliente.getTipoId());
         existingCliente.setCedula(cliente.getCedula());
         existingCliente.setNombres(cliente.getNombres());
         existingCliente.setApellidos(cliente.getApellidos());
+        existingCliente.setFechaNacimeinto(cliente.getFechaNacimeinto());
         existingCliente.setTelefono(cliente.getTelefono());
         existingCliente.setDireccion(cliente.getDireccion());
+        existingCliente.setCorreo(cliente.getCorreo());
+        existingCliente.setPassword(cliente.getPassword());
+        existingCliente.setImagen(cliente.getImagen());
         return clienterepository.save(existingCliente);
     }
 
